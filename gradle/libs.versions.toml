@@ -1,5 +1,6 @@
 [versions]
 agp = "8.9.1"
+javaxInject = "1"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -21,6 +22,7 @@ dagger-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compil
 hilt = { module = "com.google.dagger:hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler" }
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
