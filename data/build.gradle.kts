@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 
 }
 
@@ -40,17 +41,21 @@ android {
 dependencies {
     implementation(project(":domain"))
 
+    implementation(libs.javax.inject)
+
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.common)
     kapt(libs.androidx.room.compiler)
 
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.android)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation (libs.ktor.ktor.client.core)
+    implementation (libs.ktor.ktor.client.android)
+    implementation (libs.ktor.ktor.client.content.negotiation)
+    implementation (libs.ktor.ktor.serialization.kotlinx.json)
 
-    implementation(libs.hilt.android)
-    kapt(libs.dagger.hilt.android.compiler)
+
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.google.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
