@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.library")
     alias(libs.plugins.kotlin.android)
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 
 }
@@ -11,11 +11,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.korniykom.data"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -41,21 +37,20 @@ android {
 dependencies {
     implementation(project(":domain"))
 
-    implementation(libs.javax.inject)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.androidx.room.room.compiler)
 
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.room.common)
-    kapt(libs.androidx.room.compiler)
-
-    implementation (libs.ktor.ktor.client.core)
-    implementation (libs.ktor.ktor.client.android)
-    implementation (libs.ktor.ktor.client.content.negotiation)
-    implementation (libs.ktor.ktor.serialization.kotlinx.json)
-
+    implementation(libs.ktor.ktor.client.core)
+    implementation(libs.ktor.client.android.v236)
+    implementation(libs.ktor.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json.v236)
 
     implementation(libs.dagger.hilt.android)
-    kapt(libs.google.hilt.android.compiler)
+    ksp(libs.google.hilt.android.compiler)
+
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.google.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

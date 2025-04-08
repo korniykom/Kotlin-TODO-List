@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.korniykom.data.local.TodoDao
 import com.korniykom.data.local.TodoDatabase
 import com.korniykom.data.remote.NetworkApi
+import com.korniykom.data.repository.NetworkRepositoryImpl
 import com.korniykom.data.repository.TodoRepositoryImpl
 import com.korniykom.domain.repository.NetworkRepository
 import com.korniykom.domain.repository.TodoRepository
