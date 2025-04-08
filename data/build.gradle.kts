@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.kapt")
     id("dagger.hilt.android.plugin")
 
 }
@@ -39,7 +39,7 @@ dependencies {
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    ksp(libs.androidx.room.room.compiler)
+    kapt(libs.androidx.room.room.compiler)
 
     implementation(libs.ktor.ktor.client.core)
     implementation(libs.ktor.client.android.v236)
@@ -47,10 +47,7 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json.v236)
 
     implementation(libs.dagger.hilt.android)
-    ksp(libs.google.hilt.android.compiler)
-
-    implementation(libs.dagger.hilt.android)
-    ksp(libs.google.hilt.android.compiler)
+    kapt(libs.google.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

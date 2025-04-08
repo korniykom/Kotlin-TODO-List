@@ -1,4 +1,5 @@
 [versions]
+kapt = "2.0.21"
 agp = "8.9.1"
 hiltAndroid = "2.50"
 hiltAndroidCompiler = "2.50"

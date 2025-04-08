@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
 }
 
@@ -45,8 +45,7 @@ dependencies {
     implementation(project(":data"))
 
     implementation(libs.dagger.hilt.android)
-    ksp(libs.google.hilt.android.compiler)
-
+    kapt(libs.google.hilt.android.compiler)
     implementation(libs.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
