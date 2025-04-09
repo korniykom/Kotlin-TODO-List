@@ -1,8 +1,9 @@
-package com.korniykom.todo_list.ui.viewmodels.MVVM
+package com.korniykom.todo_list.ui.viewmodels.mvvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.korniykom.domain.model.Todo
+import com.korniykom.domain.usecase.AddTodoUseCase
 import com.korniykom.domain.usecase.DeleteTodoUseCase
 import com.korniykom.domain.usecase.GetPublicIpUseCase
 import com.korniykom.domain.usecase.GetTodosUseCase
@@ -18,9 +19,11 @@ class TodosViewModel @Inject constructor(
     private val getTodosUseCase : GetTodosUseCase ,
     private val updateTodoUseCase : UpdateTodoUseCase ,
     private val deleteTodoUseCase : DeleteTodoUseCase ,
-    private val getPublicIpUseCase : GetPublicIpUseCase
+    private val getPublicIpUseCase : GetPublicIpUseCase,
+    private val addTodoUseCase : AddTodoUseCase
 ) : ViewModel() {
-    private val _todos = MutableStateFlow<List<Todo>>(emptyList())
+
+    private var _todos = MutableStateFlow<List<Todo>>(emptyList())
     val todos : StateFlow<List<Todo>> = _todos
 
     private val _publicIp = MutableStateFlow("No IP address")
@@ -28,12 +31,25 @@ class TodosViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+
+            addTodoUseCase(Todo(
+                title = "test" ,
+                description = "test" ,
+                isCompleted = true
+            ))
+            getTodosUseCase().collect {todosList ->
+                _todos.value = todosList
+            }
             try {
                 _publicIp.value = getPublicIpUseCase()
             } catch (e : Exception) {
                 _publicIp.value = "Unable to fetch IP address"
             }
         }
-
+    }
+    fun onTodoDelete(id : Long) {
+        viewModelScope.launch {
+            deleteTodoUseCase(id)
+        }
     }
 }

@@ -16,7 +16,7 @@ enum class TodoScreen {
 @Composable
 fun TodoNavHost(
     navController : NavHostController = rememberNavController() ,
-    startDestination : String = TodoScreen.Loading.name
+    startDestination : String = TodoScreen.Todos.name
 ) {
     NavHost(
         navController = navController , startDestination = startDestination
