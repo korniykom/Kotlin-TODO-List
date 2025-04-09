@@ -5,14 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.korniykom.todo_list.ui.TodoNavHost
 import com.korniykom.todo_list.ui.theme.TODOListTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TODOListTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize() ,
                     color = MaterialTheme.colorScheme.background
                 ) {
                     TodoNavHost()
