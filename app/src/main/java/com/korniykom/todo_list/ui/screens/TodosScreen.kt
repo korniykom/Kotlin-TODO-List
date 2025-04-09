@@ -26,7 +26,8 @@ import com.korniykom.todo_list.ui.viewmodels.mvvm.TodosViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TodosScreen(
-    viewModel : TodosViewModel = hiltViewModel()
+    viewModel : TodosViewModel = hiltViewModel(),
+    onEdit: (Long) -> Unit
 ) {
     val publicIp by viewModel.publicIp.collectAsState()
     val todos by viewModel.todos.collectAsState()
@@ -57,7 +58,9 @@ fun TodosScreen(
                         SwipeableTodoCard(
                             checked = item.isCompleted ,
                             title = item.title ,
-                            onDelete =  {viewModel.onTodoDelete(item.id)} )
+                            onDelete =  {viewModel.onTodoDelete(item.id)},
+                            onEdit = { onEdit(item.id) }
+                        )
                     }
                 }
             }

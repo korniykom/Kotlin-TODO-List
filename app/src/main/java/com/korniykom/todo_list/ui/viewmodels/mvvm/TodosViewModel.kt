@@ -17,10 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class TodosViewModel @Inject constructor(
     private val getTodosUseCase : GetTodosUseCase ,
-    private val updateTodoUseCase : UpdateTodoUseCase ,
     private val deleteTodoUseCase : DeleteTodoUseCase ,
     private val getPublicIpUseCase : GetPublicIpUseCase,
-    private val addTodoUseCase : AddTodoUseCase
 ) : ViewModel() {
 
     private var _todos = MutableStateFlow<List<Todo>>(emptyList())
@@ -31,12 +29,6 @@ class TodosViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-
-            addTodoUseCase(Todo(
-                title = "test" ,
-                description = "test" ,
-                isCompleted = true
-            ))
             getTodosUseCase().collect {todosList ->
                 _todos.value = todosList
             }

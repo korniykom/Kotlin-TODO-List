@@ -1,5 +1,6 @@
 package com.korniykom.todo_list.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,8 +29,9 @@ fun SwipeableTodoCard(
     modifier : Modifier = Modifier ,
     checked : Boolean = false ,
     onCheckChange : (Boolean) -> Unit = {} ,
-    title : String,
+    title : String ,
     onDelete : () -> Unit ,
+    onEdit : () -> Unit = {}
 ) {
     val dismissState = rememberSwipeToDismissBoxState(
         confirmValueChange = {
@@ -67,9 +69,7 @@ fun SwipeableTodoCard(
         enableDismissFromEndToStart = true ,
     ) {
         TodoCard(
-            checked = checked ,
-            onCheckChange = onCheckChange ,
-            title = title
+            checked = checked , onCheckChange = onCheckChange , title = title , onEdit = onEdit
         )
     }
 }
@@ -79,7 +79,8 @@ fun TodoCard(
     modifier : Modifier = Modifier ,
     checked : Boolean ,
     onCheckChange : (Boolean) -> Unit ,
-    title : String
+    title : String ,
+    onEdit : () -> Unit
 ) {
     Card {
         Row(
@@ -103,7 +104,10 @@ fun TodoCard(
                     textDecoration = if (checked) TextDecoration.LineThrough else TextDecoration.None
                 )
             }
-            Icon(imageVector = Icons.Default.Edit , contentDescription = "Edit Todo")
+            Icon(
+                imageVector = Icons.Default.Edit ,
+                contentDescription = "Edit Todo" ,
+                modifier = modifier.clickable { onEdit() })
         }
     }
 }
