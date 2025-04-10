@@ -26,7 +26,7 @@ class TodosViewModel @Inject constructor(
     private var _todos = MutableStateFlow<List<Todo>>(emptyList())
     val todos : StateFlow<List<Todo>> = _todos
 
-    private val _publicIp = MutableStateFlow("No__ IP address")
+    private val _publicIp = MutableStateFlow("No IP address")
     val publicIp : StateFlow<String> = _publicIp
 
     init {
@@ -41,7 +41,6 @@ class TodosViewModel @Inject constructor(
             try {
                 _publicIp.value = getPublicIpUseCase()
             } catch (e : Exception) {
-                Log.e("IP" , e.message.toString())
                 _publicIp.value = "Unable to fetch IP address"
             }
         }
