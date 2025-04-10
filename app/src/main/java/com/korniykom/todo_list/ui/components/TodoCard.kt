@@ -1,5 +1,6 @@
 package com.korniykom.todo_list.ui.components
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -18,17 +19,24 @@ import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import java.util.function.Predicate.not
 
 @Composable
 fun SwipeableTodoCard(
     modifier : Modifier = Modifier ,
     checked : Boolean = false ,
-    onCheckChange : (Boolean) -> Unit = {} ,
+    onCheckChange : (Boolean) -> Unit ,
     title : String ,
     onDelete : () -> Unit ,
     onEdit : () -> Unit = {}
@@ -82,6 +90,21 @@ fun TodoCard(
     title : String ,
     onEdit : () -> Unit
 ) {
+    val context = LocalContext.current
+
+    var isFirstComposition by remember { mutableStateOf(true) }
+
+    LaunchedEffect(checked) {
+        if(checked && !isFirstComposition) {
+            Toast.makeText(
+                context,
+                "Task Completed!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        isFirstComposition = false
+    }
+
     Card {
         Row(
             modifier = modifier

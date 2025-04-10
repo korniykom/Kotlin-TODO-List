@@ -27,7 +27,8 @@ import com.korniykom.todo_list.ui.viewmodels.mvvm.TodosViewModel
 @Composable
 fun TodosScreen(
     viewModel : TodosViewModel = hiltViewModel(),
-    onEdit: (Long) -> Unit
+    onEdit: (Long) -> Unit,
+    onSave: () -> Unit
 ) {
     val publicIp by viewModel.publicIp.collectAsState()
     val todos by viewModel.todos.collectAsState()
@@ -40,7 +41,7 @@ fun TodosScreen(
                 )
             })
     } , floatingActionButton = {
-        FloatingActionButton(onClick = {}) {
+        FloatingActionButton(onClick = onSave) {
             Icon(imageVector = Icons.Default.Add , contentDescription = "Add Todo Icon")
         }
     }) { paddingValues ->
@@ -58,8 +59,9 @@ fun TodosScreen(
                         SwipeableTodoCard(
                             checked = item.isCompleted ,
                             title = item.title ,
-                            onDelete =  {viewModel.onTodoDelete(item.id)},
-                            onEdit = { onEdit(item.id) }
+                            onDelete = { viewModel.onTodoDelete(item.id) } ,
+                            onEdit = { onEdit(item.id) } ,
+                            onCheckChange = { viewModel.onToggleChecked(item)}
                         )
                     }
                 }

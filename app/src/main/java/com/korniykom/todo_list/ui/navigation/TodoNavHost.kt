@@ -26,7 +26,7 @@ fun TodoNavHost(
         composable(route = Screen.Todos.route) {
             TodosScreen(onEdit = { todoId ->
                 navController.navigate(Screen.Edit.createRoute(todoId))
-            })
+            } , onSave = { navController.navigate(Screen.Edit.createRoute(0)) })
         }
         composable(
             route = Screen.Edit.route , arguments = listOf(

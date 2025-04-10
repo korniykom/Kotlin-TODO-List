@@ -3,12 +3,13 @@ package com.korniykom.todo_list.ui.viewmodels.mvvm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.korniykom.domain.model.Todo
-import com.korniykom.domain.usecase.AddTodoUseCase
 import com.korniykom.domain.usecase.DeleteTodoUseCase
 import com.korniykom.domain.usecase.GetPublicIpUseCase
+import com.korniykom.domain.usecase.GetTodoByIdUseCase
 import com.korniykom.domain.usecase.GetTodosUseCase
 import com.korniykom.domain.usecase.UpdateTodoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -17,8 +18,10 @@ import javax.inject.Inject
 @HiltViewModel
 class TodosViewModel @Inject constructor(
     private val getTodosUseCase : GetTodosUseCase ,
+    private val getTodoByIdUseCase : GetTodoByIdUseCase ,
     private val deleteTodoUseCase : DeleteTodoUseCase ,
-    private val getPublicIpUseCase : GetPublicIpUseCase,
+    private val getPublicIpUseCase : GetPublicIpUseCase ,
+    private val updateTodoUseCase : UpdateTodoUseCase
 ) : ViewModel() {
 
     private var _todos = MutableStateFlow<List<Todo>>(emptyList())
@@ -29,7 +32,7 @@ class TodosViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getTodosUseCase().collect {todosList ->
+            getTodosUseCase().collect { todosList ->
                 _todos.value = todosList
             }
             try {
@@ -39,9 +42,18 @@ class TodosViewModel @Inject constructor(
             }
         }
     }
+
     fun onTodoDelete(id : Long) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             deleteTodoUseCase(id)
+        }
+    }
+
+    fun onToggleChecked(todo : Todo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val currentCheckedState = todo.isCompleted
+            val newTodo = todo.copy(isCompleted = ! currentCheckedState)
+            updateTodoUseCase(newTodo)
         }
     }
 }
