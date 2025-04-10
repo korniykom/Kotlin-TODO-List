@@ -6,27 +6,23 @@ import com.korniykom.domain.model.Todo
 
 @Entity(tableName = "todos")
 data class TodoEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id : Long = 0,
+    @PrimaryKey(autoGenerate = true) val id : Long = 0 ,
     val title : String ,
-    val description: String,
-    val isCompleted: Boolean
+    val description : String ,
+    val isCompleted : Boolean
 ) {
-    fun toDomainModel(): Todo {
+    fun toDomainModel() : Todo {
         return Todo(
-            id = id,
-            title = title,
-            description = description,
-            isCompleted = isCompleted
+            id = id , title = title , description = description , isCompleted = isCompleted
         )
     }
 
     companion object {
-        fun fromDomainModel(todo: Todo): TodoEntity {
-            return TodoEntity (
-                id = todo.id,
-                title = todo.title,
-                description = todo.description,
+        fun fromDomainModel(todo : Todo) : TodoEntity {
+            return TodoEntity(
+                id = todo.id ,
+                title = todo.title ,
+                description = todo.description ,
                 isCompleted = todo.isCompleted
             )
         }

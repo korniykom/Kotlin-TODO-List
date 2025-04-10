@@ -26,9 +26,9 @@ import com.korniykom.todo_list.ui.viewmodels.mvvm.TodosViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TodosScreen(
-    viewModel : TodosViewModel = hiltViewModel(),
-    onEdit: (Long) -> Unit,
-    onSave: () -> Unit
+    viewModel : TodosViewModel = hiltViewModel() ,
+    onEdit : (Long) -> Unit ,
+    onSave : () -> Unit
 ) {
     val publicIp by viewModel.publicIp.collectAsState()
     val todos by viewModel.todos.collectAsState()
@@ -61,7 +61,7 @@ fun TodosScreen(
                             title = item.title ,
                             onDelete = { viewModel.onTodoDelete(item.id) } ,
                             onEdit = { onEdit(item.id) } ,
-                            onCheckChange = { viewModel.onToggleChecked(item)}
+                            onCheckChange = { viewModel.onToggleChecked(item) }
                         )
                     }
                 }

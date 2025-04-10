@@ -30,7 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import java.util.function.Predicate.not
 
 @Composable
 fun SwipeableTodoCard(
@@ -50,7 +49,6 @@ fun SwipeableTodoCard(
                 false
             }
         })
-
     SwipeToDismissBox(
         state = dismissState ,
         backgroundContent = {
@@ -91,20 +89,16 @@ fun TodoCard(
     onEdit : () -> Unit
 ) {
     val context = LocalContext.current
-
     var isFirstComposition by remember { mutableStateOf(true) }
 
     LaunchedEffect(checked) {
-        if(checked && !isFirstComposition) {
+        if (checked && ! isFirstComposition) {
             Toast.makeText(
-                context,
-                "Task Completed!",
-                Toast.LENGTH_SHORT
+                context , "Task Completed!" , Toast.LENGTH_SHORT
             ).show()
         }
         isFirstComposition = false
     }
-
     Card {
         Row(
             modifier = modifier

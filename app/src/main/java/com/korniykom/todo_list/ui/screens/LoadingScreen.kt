@@ -40,7 +40,6 @@ fun LoadingScreen(
         }
         onLoadingFinished()
     }
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -60,7 +59,6 @@ fun LoadingScreen(
                         .size(70.dp)
                         .background(boxColors[0] , RoundedCornerShape(8.dp))
                 ) {}
-
             }
             Column {
                 Box(

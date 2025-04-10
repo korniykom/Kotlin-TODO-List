@@ -15,7 +15,6 @@ import com.korniykom.todo_list.ui.components.EditTodoContent
 import com.korniykom.todo_list.ui.viewmodels.mvi.EditTodoIntent
 import com.korniykom.todo_list.ui.viewmodels.mvi.EditTodoViewModel
 
-
 @Composable
 fun EditTodoScreen(
     viewModel : EditTodoViewModel = hiltViewModel() , onSave : () -> Unit = {}
@@ -41,7 +40,6 @@ fun EditTodoScreen(
                 )
             } ,
             onCheckChange = { checked -> viewModel.processIntent(EditTodoIntent.SetChecked(checked)) } ,
-
             onSaveClicked = {
                 viewModel.processIntent(EditTodoIntent.SaveTodo)
                 onSave()

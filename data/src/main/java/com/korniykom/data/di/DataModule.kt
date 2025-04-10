@@ -26,23 +26,21 @@ import javax.inject.Singleton
 object DataModule {
     @Provides
     @Singleton
-    fun provideTodoDatabase(@ApplicationContext context: Context): TodoDatabase {
+    fun provideTodoDatabase(@ApplicationContext context : Context) : TodoDatabase {
         return Room.databaseBuilder(
-            context,
-            TodoDatabase::class.java,
-            "todo_database"
+            context , TodoDatabase::class.java , "todo_database"
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideTodoDao(database : TodoDatabase): TodoDao {
+    fun provideTodoDao(database : TodoDatabase) : TodoDao {
         return database.todoDao()
     }
 
     @Provides
     @Singleton
-    fun provideHttpClient(): HttpClient {
+    fun provideHttpClient() : HttpClient {
         return HttpClient(Android) {
             install(ContentNegotiation) {
                 json(Json {
@@ -62,13 +60,13 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideTodoRepository(todoDao : TodoDao): TodoRepository {
+    fun provideTodoRepository(todoDao : TodoDao) : TodoRepository {
         return TodoRepositoryImpl(todoDao)
     }
 
     @Provides
     @Singleton
-    fun provideNetworkRepository(networkApi: NetworkApi): NetworkRepository {
+    fun provideNetworkRepository(networkApi : NetworkApi) : NetworkRepository {
         return NetworkRepositoryImpl(networkApi)
     }
 }

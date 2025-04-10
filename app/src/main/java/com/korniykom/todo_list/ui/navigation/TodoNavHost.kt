@@ -11,11 +11,10 @@ import com.korniykom.todo_list.ui.screens.EditTodoScreen
 import com.korniykom.todo_list.ui.screens.LoadingScreen
 import com.korniykom.todo_list.ui.screens.TodosScreen
 
-
 @Composable
 fun TodoNavHost(
     navController : NavHostController = rememberNavController() ,
-    startDestination : String = Screen.Todos.route
+    startDestination : String = Screen.Loading.route
 ) {
     NavHost(
         navController = navController , startDestination = startDestination

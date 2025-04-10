@@ -63,7 +63,7 @@ class EditTodoViewModel @Inject constructor(
     }
 
     private fun saveTodo() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val todo = Todo(
                 id = _state.value.id ,
                 title = _state.value.title ,
@@ -81,15 +81,15 @@ class EditTodoViewModel @Inject constructor(
         }
     }
 
-    private fun updateChecked( checked: Boolean) {
+    private fun updateChecked(checked : Boolean) {
         _state.value = _state.value.copy(isChecked = checked)
     }
 
-    private fun updateDescription(description: String) {
+    private fun updateDescription(description : String) {
         _state.value = _state.value.copy(description = description)
     }
 
-    private fun updateTitle(title: String) {
+    private fun updateTitle(title : String) {
         _state.value = _state.value.copy(title = title)
     }
 }
