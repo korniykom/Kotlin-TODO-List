@@ -37,7 +37,6 @@ class TodosViewModel @Inject constructor(
         }
 
         viewModelScope.launch(Dispatchers.IO) {
-
             try {
                 _publicIp.value = getPublicIpUseCase()
             } catch (e : Exception) {
