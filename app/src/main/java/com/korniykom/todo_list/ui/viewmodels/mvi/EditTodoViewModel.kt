@@ -4,9 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.korniykom.domain.model.Todo
-import com.korniykom.domain.usecase.AddTodoUseCase
-import com.korniykom.domain.usecase.GetTodoByIdUseCase
-import com.korniykom.domain.usecase.UpdateTodoUseCase
+import com.korniykom.domain.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,9 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditTodoViewModel @Inject constructor(
-    private val getTodoByIdUseCase : GetTodoByIdUseCase ,
-    private val addTodoUseCase : AddTodoUseCase ,
-    private val updateTodoUseCase : UpdateTodoUseCase ,
+    private val todoRepository : TodoRepository,
     savedStateHandle : SavedStateHandle
 ) : ViewModel() {
 
@@ -44,7 +40,7 @@ class EditTodoViewModel @Inject constructor(
 
         viewModelScope.launch(Dispatchers.IO) {
             if (todoId > 0) {
-                val todo = getTodoByIdUseCase(todoId)
+                val todo = todoRepository.getTodoById(todoId)
                 if (todo != null) {
                     _state.value = _state.value.copy(
                         id = todo.id ,
@@ -71,9 +67,9 @@ class EditTodoViewModel @Inject constructor(
                 isCompleted = _state.value.isChecked
             )
             if (todoId > 0) {
-                updateTodoUseCase(todo)
+                todoRepository.updateTodo(todo)
             } else {
-                addTodoUseCase(todo)
+                todoRepository.insertTodo(todo)
             }
             _state.value.copy(
                 isInitialized = true

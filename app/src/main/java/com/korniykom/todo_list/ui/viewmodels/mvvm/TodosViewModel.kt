@@ -1,13 +1,10 @@
 package com.korniykom.todo_list.ui.viewmodels.mvvm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.korniykom.data.remote.NetworkApi
 import com.korniykom.domain.model.Todo
-import com.korniykom.domain.usecase.DeleteTodoUseCase
-import com.korniykom.domain.usecase.GetPublicIpUseCase
-import com.korniykom.domain.usecase.GetTodosUseCase
-import com.korniykom.domain.usecase.UpdateTodoUseCase
+import com.korniykom.domain.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,10 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TodosViewModel @Inject constructor(
-    private val getTodosUseCase : GetTodosUseCase ,
-    private val deleteTodoUseCase : DeleteTodoUseCase ,
-    private val getPublicIpUseCase : GetPublicIpUseCase ,
-    private val updateTodoUseCase : UpdateTodoUseCase
+    private val todoRepository: TodoRepository,
+    private val networkApi : NetworkApi
 ) : ViewModel() {
 
     private var _todos = MutableStateFlow<List<Todo>>(emptyList())
@@ -31,14 +26,14 @@ class TodosViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            getTodosUseCase().collect { todosList ->
+            todoRepository.getTodos().collect { todosList ->
                 _todos.value = todosList
             }
         }
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _publicIp.value = getPublicIpUseCase()
+                _publicIp.value = networkApi.getPublicIp()
             } catch (e : Exception) {
                 _publicIp.value = "Unable to fetch IP address"
             }
@@ -47,7 +42,7 @@ class TodosViewModel @Inject constructor(
 
     fun onTodoDelete(id : Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            deleteTodoUseCase(id)
+            todoRepository.deleteTodo(id)
         }
     }
 
@@ -55,7 +50,7 @@ class TodosViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val currentCheckedState = todo.isCompleted
             val newTodo = todo.copy(isCompleted = ! currentCheckedState)
-            updateTodoUseCase(newTodo)
+            todoRepository.updateTodo(newTodo)
         }
     }
 }
