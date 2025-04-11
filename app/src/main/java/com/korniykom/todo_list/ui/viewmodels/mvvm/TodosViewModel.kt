@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TodosViewModel @Inject constructor(
-    private val todoRepository: TodoRepository,
+    private val todoRepository : TodoRepository ,
     private val networkApi : NetworkApi
 ) : ViewModel() {
 
