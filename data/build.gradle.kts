@@ -36,4 +36,8 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     kapt(libs.google.hilt.android.compiler)
 
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
