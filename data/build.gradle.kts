@@ -36,4 +36,8 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     kapt(libs.google.hilt.android.compiler)
 
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    testImplementation ("io.mockk:mockk:1.13.5")
+
 }
