@@ -1,8 +1,7 @@
-package com.korniykom.data
+package com.korniykom.data.repository
 
 import com.korniykom.data.local.TodoDao
 import com.korniykom.data.local.entity.TodoEntity
-import com.korniykom.data.repository.TodoRepositoryImpl
 import com.korniykom.domain.model.Todo
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -44,7 +43,10 @@ class TodoRepositoryImplTest {
 
         assertEquals(todos.size , 2)
         assertEquals(Todo(1 , "Blink 1 times" , "Do it regularly" , false) , todos[0])
-        assertEquals(Todo(2 , "Buy milk" , "The last milk didn't age well..." , true) , todos[1])
+        assertEquals(
+            Todo(2 , "Buy milk" , "The last milk didn't age well..." , true) ,
+            todos[1]
+        )
         verify { todoDao.getTodos() }
     }
 
@@ -90,7 +92,7 @@ class TodoRepositoryImplTest {
             description = "Go jogging from 7:30am to 8:30am" ,
             isCompleted = true
         )
-        val todoEntity = TodoEntity.fromDomainModel(todo)
+        val todoEntity = TodoEntity.Companion.fromDomainModel(todo)
         val expectedId = 1L
         coEvery { todoDao.insertTodo(any()) } returns expectedId
 

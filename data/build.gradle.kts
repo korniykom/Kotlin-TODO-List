@@ -11,6 +11,7 @@ android {
 
     defaultConfig {
         minSdk = 26
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
@@ -37,7 +38,16 @@ dependencies {
     kapt(libs.google.hilt.android.compiler)
 
     testImplementation(libs.junit)
+    testImplementation (libs.mockk)
+    testImplementation(libs.androidx.core.testing)
+
     androidTestImplementation(libs.androidx.junit)
-    testImplementation ("io.mockk:mockk:1.13.5")
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation (libs.androidx.junit.v115)
+    androidTestImplementation (libs.androidx.runner)
+    androidTestImplementation (libs.androidx.rules)
+    androidTestImplementation (libs.androidx.room.testing)
+
+
 
 }
