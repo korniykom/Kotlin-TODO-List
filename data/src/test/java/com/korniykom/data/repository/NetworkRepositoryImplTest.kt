@@ -47,5 +47,4 @@ class NetworkRepositoryImplTest {
 
         coVerify { mockNetworkApi.getPublicIp() }
     }
-
 }

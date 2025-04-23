@@ -55,7 +55,7 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideNetworkApi(httpClient : HttpClient) : NetworkApiImpl {
+    fun provideNetworkApi(httpClient : HttpClient) : NetworkApi {
         return NetworkApiImpl(httpClient)
     }
 
