@@ -29,7 +29,7 @@ class NetworkApiTest {
         }
 
         val httpClient = HttpClient(mockEngine)
-        val networkApi = NetworkApi(httpClient)
+        val networkApi = NetworkApiImpl(httpClient)
 
         val result = networkApi.getPublicIp()
 
@@ -51,7 +51,7 @@ class NetworkApiTest {
         }
 
         val httpClient = HttpClient(mockEngine)
-        val networkApi = NetworkApi(httpClient)
+        val networkApi = NetworkApiImpl(httpClient)
 
         val result = networkApi.getPublicIp()
 
@@ -69,7 +69,7 @@ class NetworkApiTest {
         }
 
         val httpClient = HttpClient(mockEngine)
-        val networkApi = NetworkApi(httpClient)
+        val networkApi = NetworkApiImpl(httpClient)
 
         try {
             networkApi.getPublicIp()
@@ -90,7 +90,7 @@ class NetworkApiTest {
         }
 
         val httpClient = HttpClient(mockEngine)
-        val networkApi = NetworkApi(httpClient)
+        val networkApi = NetworkApiImpl(httpClient)
 
         try {
             networkApi.getPublicIp()

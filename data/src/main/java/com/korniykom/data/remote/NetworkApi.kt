@@ -6,10 +6,14 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
 import javax.inject.Inject
 
-class NetworkApi @Inject constructor(
+interface NetworkApi {
+    suspend fun getPublicIp() : String
+}
+
+class NetworkApiImpl @Inject constructor(
     private val client : HttpClient
-) {
-    suspend fun getPublicIp() : String {
+) : NetworkApi {
+    override suspend fun getPublicIp() : String {
         val response = client.get("https://api.ipify.org")
         if (! response.status.isSuccess()) {
             throw RuntimeException("Failed to get IP: ${response.status}")

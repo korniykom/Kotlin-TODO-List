@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.korniykom.data.local.TodoDao
 import com.korniykom.data.local.TodoDatabase
 import com.korniykom.data.remote.NetworkApi
+import com.korniykom.data.remote.NetworkApiImpl
 import com.korniykom.data.repository.NetworkRepositoryImpl
 import com.korniykom.data.repository.TodoRepositoryImpl
 import com.korniykom.domain.repository.NetworkRepository
@@ -54,8 +55,8 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideNetworkApi(httpClient : HttpClient) : NetworkApi {
-        return NetworkApi(httpClient)
+    fun provideNetworkApi(httpClient : HttpClient) : NetworkApiImpl {
+        return NetworkApiImpl(httpClient)
     }
 
     @Provides

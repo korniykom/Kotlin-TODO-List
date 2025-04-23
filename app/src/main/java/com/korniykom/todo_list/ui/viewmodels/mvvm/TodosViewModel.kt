@@ -3,6 +3,7 @@ package com.korniykom.todo_list.ui.viewmodels.mvvm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.korniykom.data.remote.NetworkApi
+import com.korniykom.data.remote.NetworkApiImpl
 import com.korniykom.domain.model.Todo
 import com.korniykom.domain.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TodosViewModel @Inject constructor(
     private val todoRepository : TodoRepository ,
-    private val networkApi : NetworkApi
+    private val networkApi : NetworkApiImpl
 ) : ViewModel() {
 
     private var _todos = MutableStateFlow<List<Todo>>(emptyList())
