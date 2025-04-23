@@ -5,13 +5,7 @@
       <SelectionState runConfigName="TODO-List.app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TodoItem_inserted_in_database_correct()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="TodoDatabaseTest">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="delete_from_database_correct()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
