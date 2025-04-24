@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         minSdk = 26
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.korniykom.todo_list.HiltTestRunner"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
@@ -45,7 +45,7 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation (libs.androidx.junit.v115)
+    androidTestImplementation (libs.androidx.junit)
     androidTestImplementation (libs.androidx.runner)
     androidTestImplementation (libs.androidx.rules)
     androidTestImplementation (libs.androidx.room.testing)

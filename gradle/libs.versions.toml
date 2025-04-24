@@ -2,6 +2,7 @@
 androidxJunit = "1.1.5"
 coreTesting = "2.2.0"
 hiltAndroidGradlePlugin = "2.50"
+hiltAndroidTesting = "2.44"
 hiltNavigationCompose = "1.2.0"
 kotlinxCoroutines = "1.7.3"
 kapt = "2.0.21"
@@ -27,28 +28,44 @@ composeBom = "2025.03.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 mockk = "1.13.5"
+mockkAndroid = "1.13.5"
 navigationCompose = "2.8.9"
+navigationTesting = "2.8.9"
 roomCompiler = "2.6.1"
 roomTesting = "2.7.0"
 roomVersion = "2.6.1"
 rules = "1.6.1"
 runner = "1.6.2"
 junitJunit = "4.12"
+truth = "1.1.5"
 turbine = "1.0.0"
+uiTestJunit4 = "1.8.0"
+uiTestJunit4Android = "1.7.8"
 
 [libraries]
+androidx-compose-ui-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "uiTestJunit4" }
+androidx-core = { module = "androidx.test:core", version.ref = "rules" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
-androidx-junit-v115 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationTesting" }
 androidx-room-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "roomTesting" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+androidx-test-espresso-espresso-core = { module = "androidx.test.espresso:espresso-core" }
+androidx-ui-test = { module = "androidx.compose.ui:ui-test", version.ref = "uiTestJunit4" }
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+dagger-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler" }
+dagger-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing" }
+espresso-core = { module = "androidx.test.espresso:espresso-core" }
+ext-junit = { module = "androidx.test.ext:junit" }
 google-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler" }
 hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltAndroidGradlePlugin" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
+jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -73,11 +90,18 @@ ktor-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "kt
 ktor-serialization-kotlinx-json-v236 = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorSerializationKotlinxJsonVersion" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
+mockk-mockk-android = { module = "io.mockk:mockk-android" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
-junit-junit = { group = "junit", name = "junit", version.ref = "junitJunit" }
+rules = { module = "androidx.test:rules" }
+runner = { module = "androidx.test:runner" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
+ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestJunit4" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
