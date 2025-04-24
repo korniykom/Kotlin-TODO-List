@@ -28,6 +28,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 
@@ -113,8 +115,11 @@ fun TodoCard(
                 verticalAlignment = Alignment.CenterVertically ,
             ) {
                 Checkbox(
-                    checked = checked , onCheckedChange = onCheckChange
-                )
+                    checked = checked ,
+                    onCheckedChange = onCheckChange ,
+                    modifier = Modifier.semantics {
+                        contentDescription = "Checkbox"
+                    })
                 Text(
                     text = title ,
                     style = MaterialTheme.typography.titleLarge ,
@@ -123,7 +128,7 @@ fun TodoCard(
             }
             Icon(
                 imageVector = Icons.Default.Edit ,
-                contentDescription = "Edit Todo" ,
+                contentDescription = "Edit Todo $title" ,
                 modifier = modifier.clickable { onEdit() })
         }
     }

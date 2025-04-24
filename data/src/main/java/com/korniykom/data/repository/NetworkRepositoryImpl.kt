@@ -8,10 +8,6 @@ class NetworkRepositoryImpl @Inject constructor(
     private val networkApi : NetworkApi
 ) : NetworkRepository {
     override suspend fun getPublicIp() : String {
-        return try {
-            networkApi.getPublicIp()
-        } catch (e : Exception) {
-            "Problem with fetching public api"
-        }
+        return networkApi.getPublicIp()
     }
 }
