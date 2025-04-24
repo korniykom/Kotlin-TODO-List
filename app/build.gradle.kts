@@ -58,11 +58,11 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("io.mockk:mockk-android:1.13.8")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.4")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.5.4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.4")
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.runner)
+    androidTestImplementation(libs.androidx.rules.v150)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 }
