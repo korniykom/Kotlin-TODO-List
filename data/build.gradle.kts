@@ -38,18 +38,17 @@ dependencies {
     kapt(libs.google.hilt.android.compiler)
 
     testImplementation(libs.junit)
-    testImplementation (libs.mockk)
+    testImplementation(libs.mockk)
     testImplementation(libs.androidx.core.testing)
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.kotlinx.coroutines.test)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation (libs.androidx.junit.v115)
-    androidTestImplementation (libs.androidx.runner)
-    androidTestImplementation (libs.androidx.rules)
-    androidTestImplementation (libs.androidx.room.testing)
-
+    androidTestImplementation(libs.androidx.junit.v115)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.androidx.room.testing)
 
 
 }

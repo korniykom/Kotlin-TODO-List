@@ -15,16 +15,16 @@ import org.junit.Test
 
 class NetworkApiTest {
     @Test
-    fun getPublicIp_returns_ip_address_response_text_plain(): Unit = runTest {
-        val expectedIp= "1.1.1.1"
+    fun getPublicIp_returns_ip_address_response_text_plain() : Unit = runTest {
+        val expectedIp = "1.1.1.1"
         val mockEngine = MockEngine { request ->
-            assertEquals("https://api.ipify.org", request.url.toString())
-            assertEquals(request.method, HttpMethod.Get)
+            assertEquals("https://api.ipify.org" , request.url.toString())
+            assertEquals(request.method , HttpMethod.Get)
 
             respond(
-                content = ByteReadChannel(expectedIp),
-                status = HttpStatusCode.OK,
-                headers = headersOf(HttpHeaders.ContentType, "text/plain")
+                content = ByteReadChannel(expectedIp) ,
+                status = HttpStatusCode.OK ,
+                headers = headersOf(HttpHeaders.ContentType , "text/plain")
             )
         }
 
@@ -33,20 +33,20 @@ class NetworkApiTest {
 
         val result = networkApi.getPublicIp()
 
-        assertEquals(result, expectedIp)
+        assertEquals(result , expectedIp)
     }
 
     @Test
-    fun getPublicIp_returns_ip_address_response_application_text(): Unit = runTest {
-        val expectedIp= "2.2.2.2"
+    fun getPublicIp_returns_ip_address_response_application_text() : Unit = runTest {
+        val expectedIp = "2.2.2.2"
         val mockEngine = MockEngine { request ->
-            assertEquals("https://api.ipify.org", request.url.toString())
-            assertEquals(request.method, HttpMethod.Get)
+            assertEquals("https://api.ipify.org" , request.url.toString())
+            assertEquals(request.method , HttpMethod.Get)
 
             respond(
-                content = ByteReadChannel(expectedIp),
-                status = HttpStatusCode.OK,
-                headers = headersOf(HttpHeaders.ContentType, "application/text")
+                content = ByteReadChannel(expectedIp) ,
+                status = HttpStatusCode.OK ,
+                headers = headersOf(HttpHeaders.ContentType , "application/text")
             )
         }
 
@@ -55,16 +55,16 @@ class NetworkApiTest {
 
         val result = networkApi.getPublicIp()
 
-        assertEquals(result, expectedIp)
+        assertEquals(result , expectedIp)
     }
 
     @Test
     fun getPublicIp_throws_exception_when_status_is_500() : Unit = runTest {
         val mockEngine = MockEngine { request ->
             respond(
-                content = ByteReadChannel("IP address is unavailable"),
-                status = HttpStatusCode.ServiceUnavailable,
-                headers = headersOf(HttpHeaders.ContentType, "text/plain")
+                content = ByteReadChannel("IP address is unavailable") ,
+                status = HttpStatusCode.ServiceUnavailable ,
+                headers = headersOf(HttpHeaders.ContentType , "text/plain")
             )
         }
 
@@ -74,7 +74,7 @@ class NetworkApiTest {
         try {
             networkApi.getPublicIp()
             Assert.fail("getPublicIp didn't not throw an exception")
-        } catch (e: Exception) {
+        } catch (e : Exception) {
 
         }
     }
@@ -83,9 +83,9 @@ class NetworkApiTest {
     fun getPublicIp_throws_exception_when_status_is_400() : Unit = runTest {
         val mockEngine = MockEngine { request ->
             respond(
-                content = ByteReadChannel("Bad Request"),
-                status = HttpStatusCode.BadRequest,
-                headers = headersOf(HttpHeaders.ContentType, "text/plain")
+                content = ByteReadChannel("Bad Request") ,
+                status = HttpStatusCode.BadRequest ,
+                headers = headersOf(HttpHeaders.ContentType , "text/plain")
             )
         }
 
@@ -95,7 +95,7 @@ class NetworkApiTest {
         try {
             networkApi.getPublicIp()
             Assert.fail("getPublicIp didn't not throw an exception")
-        } catch (e: Exception) {
+        } catch (e : Exception) {
 
         }
     }

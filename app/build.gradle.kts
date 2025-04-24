@@ -54,7 +54,7 @@ dependencies {
     implementation(libs.androidx.material3)
 
     testImplementation(libs.junit)
-    testImplementation (libs.mockk)
+    testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
 

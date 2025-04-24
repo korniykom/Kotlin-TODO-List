@@ -16,14 +16,14 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class TodoDatabaseTest {
-    private lateinit var database: TodoDatabase
-    private lateinit var dao: TodoDao
+    private lateinit var database : TodoDatabase
+    private lateinit var dao : TodoDao
 
 
     @Before
     fun setup() {
         database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
+            ApplicationProvider.getApplicationContext() ,
             TodoDatabase::class.java
         ).allowMainThreadQueries().build()
         dao = database.todoDao()
@@ -35,19 +35,19 @@ class TodoDatabaseTest {
     }
 
     @Test
-    fun insert_in_database_correct(): Unit = runTest {
+    fun insert_in_database_correct() : Unit = runTest {
         val id = 1L;
         val todoItem = TodoEntity(
-            id = id,
+            id = id ,
             title = "Brand New Task" ,
-            description = "Renamed old task",
+            description = "Renamed old task" ,
             isCompleted = false
         )
         dao.insertTodo(todoItem)
 
         val insertedItem = dao.getTodoById(id)
 
-        assertEquals(todoItem, insertedItem)
+        assertEquals(todoItem , insertedItem)
 
     }
 
@@ -55,9 +55,9 @@ class TodoDatabaseTest {
     fun delete_from_database_correct() : Unit = runTest {
         val id = 1L;
         val todoItem = TodoEntity(
-            id = id,
+            id = id ,
             title = "Brand New Task" ,
-            description = "Renamed old task",
+            description = "Renamed old task" ,
             isCompleted = false
         )
         dao.insertTodo(todoItem)
@@ -69,20 +69,20 @@ class TodoDatabaseTest {
     }
 
     @Test
-    fun getAllTodos_is_correct(): Unit = runTest {
+    fun getAllTodos_is_correct() : Unit = runTest {
         val todoItem1 = TodoEntity(
-            id = 1,
+            id = 1 ,
             title = "Brand New Task" ,
-            description = "Renamed old task",
+            description = "Renamed old task" ,
             isCompleted = false
         )
         val todoItem2 = TodoEntity(
-            id = 2,
+            id = 2 ,
             title = "Brand New Task2" ,
-            description = "Renamed old task2",
+            description = "Renamed old task2" ,
             isCompleted = true
         )
-        val expectedTodos = listOf(todoItem1, todoItem2)
+        val expectedTodos = listOf(todoItem1 , todoItem2)
 
         dao.insertTodo(todoItem1)
         dao.insertTodo(todoItem2)
@@ -93,18 +93,18 @@ class TodoDatabaseTest {
     }
 
     @Test
-    fun updateTodo_is_correct(): Unit = runTest {
+    fun updateTodo_is_correct() : Unit = runTest {
         val id = 1L
         val todoItem1 = TodoEntity(
-            id = id,
+            id = id ,
             title = "Brand New Task" ,
-            description = "Renamed old task",
+            description = "Renamed old task" ,
             isCompleted = false
         )
         val updatedTodoItem = TodoEntity(
-            id = id,
+            id = id ,
             title = "Old task" ,
-            description = "I forgot to do it",
+            description = "I forgot to do it" ,
             isCompleted = false
         )
         dao.insertTodo(todoItem1)
@@ -113,7 +113,7 @@ class TodoDatabaseTest {
         dao.updateTodo(updatedTodoItem)
 
         val todoInDatabase = dao.getTodoById(id)
-        assertEquals(todoInDatabase, updatedTodoItem)
+        assertEquals(todoInDatabase , updatedTodoItem)
 
     }
 }

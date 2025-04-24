@@ -1,7 +1,6 @@
 package com.korniykom.data.repository
 
 import com.korniykom.data.remote.NetworkApi
-import com.korniykom.data.remote.NetworkApiImpl
 import com.korniykom.domain.repository.NetworkRepository
 import javax.inject.Inject
 

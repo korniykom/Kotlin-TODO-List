@@ -99,7 +99,7 @@ class TodosViewModelTest {
 
     @Test
     fun onTodoDelete_deletes_todo_from_repository() : Unit = runTest {
-        viewModel = TodosViewModel(repository, networkApi)
+        viewModel = TodosViewModel(repository , networkApi)
         val id = 1L
         coEvery { repository.deleteTodo(any()) } returns Unit
 
@@ -111,8 +111,8 @@ class TodosViewModelTest {
 
     @Test
     fun onToggleChecked_toggles_completition_of_the_task() : Unit = runTest {
-        viewModel = TodosViewModel(repository, networkApi)
-        val todo = Todo(1, "Todo", "Descriptioon", false )
+        viewModel = TodosViewModel(repository , networkApi)
+        val todo = Todo(1 , "Todo" , "Descriptioon" , false)
         val expectedUpdatedTodo = todo.copy(isCompleted = true)
         coEvery { repository.updateTodo(any()) } returns Unit
 

@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.korniykom.todo_list.ui.viewmodels.mvi.EditTodoState
 
@@ -30,14 +31,19 @@ fun EditTodoContent(
             value = state.title ,
             onValueChange = onTitleChange ,
             label = { Text("Title") } ,
-            modifier = modifier.fillMaxWidth() ,
-            singleLine = true
-        )
+            modifier = modifier
+                .fillMaxWidth()
+                .testTag("textField title") ,
+            singleLine = true ,
+
+            )
         OutlinedTextField(
             value = state.description ,
             onValueChange = onDescriptionChange ,
             label = { Text("Description") } ,
-            modifier = modifier.fillMaxWidth() ,
+            modifier = modifier
+                .fillMaxWidth()
+                .testTag("textField description") ,
             singleLine = true
         )
         Row(

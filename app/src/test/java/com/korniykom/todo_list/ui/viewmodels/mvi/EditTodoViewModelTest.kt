@@ -156,16 +156,16 @@ class EditTodoViewModelTest {
         val todoId = 1L
         savedStateHandle = SavedStateHandle(mapOf("todoId" to todoId))
         val mockTodo = Todo(
-            id = todoId,
-            title = "Title",
-            description = "Description",
+            id = todoId ,
+            title = "Title" ,
+            description = "Description" ,
             isCompleted = false
         )
 
         coEvery { repository.getTodoById(todoId) } returns mockTodo
         coEvery { repository.updateTodo(any()) } returns Unit
 
-        viewModel = EditTodoViewModel(repository, savedStateHandle)
+        viewModel = EditTodoViewModel(repository , savedStateHandle)
         viewModel.processIntent(EditTodoIntent.Initialize)
         viewModel.processIntent(EditTodoIntent.SetTitle("New Title"))
         viewModel.processIntent(EditTodoIntent.SetChecked(true))
@@ -174,11 +174,13 @@ class EditTodoViewModelTest {
         viewModel.processIntent(EditTodoIntent.SaveTodo)
         testDispatcher.scheduler.advanceUntilIdle()
 
-        coVerify { repository.updateTodo( match { todo ->
-            todo.id == todoId &&
-            todo.title == "New Title" &&
-            todo.isCompleted == true &&
-            todo.description == "New Description"
-        }) }
+        coVerify {
+            repository.updateTodo(match { todo ->
+                todo.id == todoId &&
+                        todo.title == "New Title" &&
+                        todo.isCompleted == true &&
+                        todo.description == "New Description"
+            })
+        }
     }
 }
